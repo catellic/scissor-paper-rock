@@ -1,16 +1,24 @@
-const startButton = document.querySelector(`.start-button`),
-  landing = document.querySelector(`.landing`),
-  instruction = document.querySelector(`.instruction`),
-  game = document.querySelector(`.game`),
-  end = document.querySelector(`end`),
-  player = document.querySelector(`.player-score`),
-  computer = document.querySelector(`.computer-score`),
-  rock = document.querySelector(`.rock`),
-  paper = document.querySelector(`paper`),
-  scissors = document.querySelector(`scissors`);
+function getEl(el) {
+  return document.querySelector(el)
+}
+
+const startButton = getEl(`.start-button`),
+  landing = getEl(`.landing`),
+  instruction = getEl(`.instruction`),
+  game = getEl(`.game`),
+  end = getEl(`end`),
+  player = getEl(`.player-score`),
+  computer = getEl(`.computer-score`),
+  rock = getEl(`.rock`),
+  paper = getEl(`paper`),
+  scissors = getEl(`scissors`);
 
 let computerScore = 0,
-  playerScore = 0;
+  playerScore = 0,
+  computerChoice,
+  playerChoice,
+  roundPlayer = false,
+  roundWinner;
 
 // handles initialization of game clicking on start game button
 startButton.addEventListener("click", () => {
@@ -20,6 +28,4 @@ startButton.addEventListener("click", () => {
   computer.textContent = computerScore;
 });
 
-
-
-game.addEventListener('')
+game.addEventListener("");
