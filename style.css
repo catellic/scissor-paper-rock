@@ -1,7 +1,7 @@
 * {
   padding: 0;
   margin: 0;
-  box-sizing: content-box;
+  /* box-sizing: content-box; */
   
   background-color: black;
   color:white;
@@ -43,7 +43,7 @@ body {
 .instruction {
     display:flex;
     flex-direction: column;
-    
+    flex-shrink:0;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -70,7 +70,7 @@ body {
     background-color: grey;
     color: burlywood;
     font-size: 22px;
-    
+    padding: 15px;
 }
 
 .game{
@@ -105,6 +105,19 @@ body {
     align-items: center;
     padding: 20px;
     gap:10px;
+}
+
+.end {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.end-title {
+    background-color: black;
+    color: burlywood;
+    font-size: 24px;
 }
 
 .hidden {
