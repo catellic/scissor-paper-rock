@@ -35,8 +35,8 @@ const btn = document.createElement("button");
 btn.textContent = "Push";
 // btn.addEventListener("click", alertMessage);
 btn.addEventListener("click", function (e) {
-  style.backgroundColor = "blue";
-  console.log(e.target);
+    btn.style.backgroundColor = "blue";
+    console.log(e.target);
 });
 div.appendChild(btn);
 
