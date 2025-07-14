@@ -19,19 +19,19 @@ function getComputerChoice() {
 
 function findWinner(player, computer) {
   if (player == computer) {
-    return [`tie`];
+    return `tie`;
   } else if (
     (player == `rock` && computer == `scissors`) ||
     (player == `paper` && computer == `rock`) ||
     (player == `scissor` && computer == "paper")
   ) {
-    return [`player`];
+    return `player`;
   } else if (
     (player == `scissors` && computer == `rock`) ||
     (player == `rock` && computer == `paper`) ||
     (player == `paper` && computer == "scissors")
   ) {
-    return [`computer`];
+    return `computer`;
   }
 }
 
@@ -53,7 +53,8 @@ const startButton = getEl(`.start-button`),
   player = getEl(`.player-score`),
   computer = getEl(`.computer-score`),
   choiceButton = getEl(`.choice`),
-  choiceButtons = document.querySelectorAll(`.choice`);
+  choiceButtons = document.querySelectorAll(`.choice`),
+  winner = getEl(`.winner`);
 
 let computerScore = 0,
   playerScore = 0,
@@ -65,7 +66,7 @@ let computerScore = 0,
 startButton.addEventListener("click", () => {
   // hide landing "page" and show game "page"
   landing.classList.add("hidden");
-  game.classList.remove("hidden");
+  game.classList.toggle("hidden");
 
   // score is initalized to zero
   player.textContent = playerScore;
@@ -79,13 +80,13 @@ choiceButtons.forEach((btn) => {
   btn.addEventListener(`click`, (e) => {
     if (playerScore < 5 || computerScore < 5) {
       // // find winner and update its score
-      // let winner = findWinner(e.target.id, computerChoice);
+      roundWinner = findWinner(e.target.id, computerChoice).toUpperCase();
       updateScores(findWinner(e.target.id, computerChoice));
 
       if (playerScore == 5 || computerScore == 5) {
         game.classList.add("hidden");
-        end.classList.remove("hidden");
-        
+        end.classList.toggle("hidden");
+        winner.textContent = roundWinner;
       } else {
         // this prepares new choice for next round
         computerChoice = getComputerChoice();
