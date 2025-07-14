@@ -1,96 +1,78 @@
-function getEl(el) {
-  return document.querySelector(el);
-}
-
-function getComputerChoice() {
-  const random = Math.random();
-  console.log(random);
-  if (random <= 0.33) {
-    console.log("rock");
-    return "rock";
-  } else if (random <= 0.67) {
-    console.log("paper");
-    return "paper";
-  } else {
-    console.log("scissors");
-    return "scissors";
-  }
-}
-
-function findWinner(player, computer) {
-  if (player == computer) {
-    return `tie`;
-  } else if (
-    (player == `rock` && computer == `scissors`) ||
-    (player == `paper` && computer == `rock`) ||
-    (player == `scissor` && computer == "paper")
-  ) {
-    return `player`;
-  } else if (
-    (player == `scissors` && computer == `rock`) ||
-    (player == `rock` && computer == `paper`) ||
-    (player == `paper` && computer == "scissors")
-  ) {
-    return `computer`;
-  }
-}
-
-function updateScores(winner) {
-  if (winner == `player`) {
-    playerScore++;
-    getEl(`.player-score`).textContent = playerScore;
-  } else if (winner == `computer`) {
-    computerScore++;
-    getEl(`.computer-score`).textContent = computerScore;
-  }
-}
-
-const startButton = getEl(`.start-button`),
-  landing = getEl(`.landing`),
-  instruction = getEl(`.instruction`),
-  game = getEl(`.game`),
-  end = getEl(`.end`),
-  player = getEl(`.player-score`),
-  computer = getEl(`.computer-score`),
-  choiceButton = getEl(`.choice`),
-  choiceButtons = document.querySelectorAll(`.choice`),
-  winner = getEl(`.winner`);
+import { sel, getEl, getElArray } from './domSelectors.js';
 
 let computerScore = 0,
   playerScore = 0,
   computerChoice,
-  playerChoice,
   roundWinner;
 
-// handles initialization of game clicking on start game button
-startButton.addEventListener("click", () => {
-  // hide landing "page" and show game "page"
-  landing.classList.add("hidden");
-  game.classList.toggle("hidden");
+function getComputerChoice() {
+  const r = Math.random();
+  if (r <= 0.33) return "rock";
+  if (r <= 0.67) return "paper";
+  return "scissors";
+}
 
-  // score is initalized to zero
-  player.textContent = playerScore;
-  computer.textContent = computerScore;
+function findWinner(player, computer) {
+  if (player === computer) return "tie";
+  if (
+    (player === "rock" && computer === "scissors") ||
+    (player === "paper" && computer === "rock") ||
+    (player === "scissors" && computer === "paper")
+  )
+    return "player";
+  return "computer";
+}
 
-  // initialize computer choice for future use
+function updateScores(winner) {
+  if (winner === "player") {
+    playerScore++;
+    sel.playerSel().textContent = playerScore;
+  } else if (winner === "computer") {
+    computerScore++;
+    sel.computerSel().textContent = computerScore;
+  }
+}
+
+function checkEndGame() {
+  if (playerScore === 5 || computerScore === 5) {
+    sel.gameSel().classList.add("hidden");
+    sel.endSel().classList.remove("hidden");
+    sel.winnerSel().textContent = roundWinner;
+  } else {
+    computerChoice = getComputerChoice();
+  }
+}
+
+sel.startButtonSel().addEventListener("click", () => {
+  sel.landingSel().classList.add("hidden");
+  sel.gameSel().classList.remove("hidden");
+
+  // Reset punteggi anche nel DOM
+  playerScore = 0;
+  computerScore = 0;
+  sel.playerSel().textContent = playerScore;
+  sel.computerSel().textContent = computerScore;
+
   computerChoice = getComputerChoice();
 });
 
-choiceButtons.forEach((btn) => {
-  btn.addEventListener(`click`, (e) => {
-    if (playerScore < 5 || computerScore < 5) {
-      // // find winner and update its score
-      roundWinner = findWinner(e.target.id, computerChoice).toUpperCase();
-      updateScores(findWinner(e.target.id, computerChoice));
+sel.choiceButtonsSel().forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    const player = e.target.id;
+    const winner = findWinner(player, computerChoice);
+    roundWinner = winner.toUpperCase();
 
-      if (playerScore == 5 || computerScore == 5) {
-        game.classList.add("hidden");
-        end.classList.toggle("hidden");
-        winner.textContent = roundWinner;
-      } else {
-        // this prepares new choice for next round
-        computerChoice = getComputerChoice();
-      }
-    }
+    updateScores(winner);
+    checkEndGame();
   });
+});
+
+sel.playAgainSel().addEventListener("click", () => {
+  playerScore = 0;
+  computerScore = 0;
+  sel.playerSel().textContent = playerScore;
+  sel.computerSel().textContent = computerScore;
+
+  sel.endSel().classList.add("hidden");
+  sel.landingSel().classList.remove("hidden");
 });
