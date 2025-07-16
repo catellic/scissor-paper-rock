@@ -27,6 +27,7 @@ function updateScores(winner) {
   if (winner === "player") {
     playerScore++;
     sel.playerSel().textContent = playerScore;
+    
   } else if (winner === "computer") {
     computerScore++;
     sel.computerSel().textContent = computerScore;
