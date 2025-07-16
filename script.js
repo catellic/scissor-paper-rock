@@ -1,69 +1,79 @@
-let computerChoice;
-let humanChoice;
-let humanScore = 0;
-let computerScore = 0;
+import { sel, getEl, getElArray } from './domSelectors.js';
+
+let computerScore = 0,
+  playerScore = 0,
+  computerChoice,
+  roundWinner;
 
 function getComputerChoice() {
-  rand = Math.random();
-  console.log(rand);
-  if (rand >= 0 && rand <= 0.3) {
-    console.log("computer: rock");
-    return "rock";
-  } else if (rand > 0.3 && rand <= 0.6) {
-    console.log("computer: paper");
-    return "paper";
-  } else if (rand > 0.6 && rand <= 1) {
-    console.log("computer: scissor");
-    return "scissor";
+  const r = Math.random();
+  if (r <= 0.33) return "rock";
+  if (r <= 0.67) return "paper";
+  return "scissors";
+}
+
+function findWinner(player, computer) {
+  if (player === computer) return "tie";
+  if (
+    (player === "rock" && computer === "scissors") ||
+    (player === "paper" && computer === "rock") ||
+    (player === "scissors" && computer === "paper")
+  )
+    return "player";
+  return "computer";
+}
+
+function updateScores(winner) {
+  if (winner === "player") {
+    playerScore++;
+    sel.playerSel().textContent = playerScore;
+    
+  } else if (winner === "computer") {
+    computerScore++;
+    sel.computerSel().textContent = computerScore;
   }
 }
 
-function getHumanChoice() {
-  let choice = prompt("rock, paper or scissor?");
-  console.log(choice);
-  return choice.toLowerCase();
-}
-
-function playRound(roundIndex) {
-  console.log("\nRound " + (roundIndex + 1));
-  computerChoice = getComputerChoice();
-  humanChoice = getHumanChoice();
-
-  if (computerChoice == humanChoice) {
-    console.log("Round>Tie");
-  } else if (computerChoice == "rock" && humanChoice == "paper") {
-    humanScore++;
-    console.log("Round>Paper beats Rock, you win!");
-  } else if (computerChoice == "rock" && humanChoice == "scissor") {
-    computerScore++;
-    console.log("Round>Rock beats Scissor, computer wins!");
-  } else if (computerChoice == "paper" && humanChoice == "rock") {
-    computerScore++;
-    console.log("Round>Paper beats Rock, computer wins!");
-  } else if (computerChoice == "paper" && humanChoice == "scissor") {
-    humanScore++;
-    console.log("Round>Scissor beats Paper, you win!");
-  } else if (computerChoice == "scissor" && humanChoice == "rock") {
-    humanScore++;
-    console.log("Round>Scissor beats Paper, you win!");
-  } else if (computerChoice == "scissor" && humanChoice == "paper") {
-    computerScore++;
-    console.log("Round>Scissor beats Paper, you win!");
-  }
-}
-
-function playGame() {
-  for (let index = 0; index < 5; index++) {
-    playRound(index);
-    console.log("Computer: " + computerScore + " - Human:" + humanScore);
-  }
-  if (computerScore == humanScore) {
-    console.log("Game>Tie!");
-  } else if (computerScore < humanScore) {
-    console.log("Game>You win!");
+function checkEndGame() {
+  if (playerScore === 5 || computerScore === 5) {
+    sel.gameSel().classList.add("hidden");
+    sel.endSel().classList.remove("hidden");
+    sel.winnerSel().textContent = roundWinner;
   } else {
-    console.log("Game>Computer wins!");
+    computerChoice = getComputerChoice();
   }
 }
 
-playGame();
+sel.startButtonSel().addEventListener("click", () => {
+  sel.landingSel().classList.add("hidden");
+  sel.gameSel().classList.remove("hidden");
+
+  // Reset punteggi anche nel DOM
+  playerScore = 0;
+  computerScore = 0;
+  sel.playerSel().textContent = playerScore;
+  sel.computerSel().textContent = computerScore;
+
+  computerChoice = getComputerChoice();
+});
+
+sel.choiceButtonsSel().forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    const player = e.target.id;
+    const winner = findWinner(player, computerChoice);
+    roundWinner = winner.toUpperCase();
+
+    updateScores(winner);
+    checkEndGame();
+  });
+});
+
+sel.playAgainSel().addEventListener("click", () => {
+  playerScore = 0;
+  computerScore = 0;
+  sel.playerSel().textContent = playerScore;
+  sel.computerSel().textContent = computerScore;
+
+  sel.endSel().classList.add("hidden");
+  sel.landingSel().classList.remove("hidden");
+});
