@@ -12,7 +12,7 @@ function getComputerChoice() {
   return "scissors";
 }
 
-function findWinner(player, computer) {
+function checkWinner(player, computer) {
   if (player === computer) return "tie";
   if (
     (player === "rock" && computer === "scissors") ||
@@ -60,7 +60,7 @@ sel.startButtonSel().addEventListener("click", () => {
 sel.choiceButtonsSel().forEach((btn) => {
   btn.addEventListener("click", (e) => {
     const player = e.target.id;
-    const winner = findWinner(player, computerChoice);
+    const winner = checkWinner(player, computerChoice);
     roundWinner = winner.toUpperCase();
 
     updateScores(winner);
