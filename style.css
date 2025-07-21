@@ -22,26 +22,34 @@
   box-sizing: border-box;
 }
 
-
 body {
   display: flex;
   flex-direction: column;
-  
+
   width: 100dvw;
   height: 100dvh;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  padding: 1dvh;
-  margin: 1dvh;
+  padding: 2dvh;
+  margin: 0;
+  overflow: hidden;
 }
 
 .title>h1 {
   font-size: clamp(5dvw, var(--fs-xl), 10dvw);
-  margin: 2dvh;
-  
+  padding: 2dvh;
+  text-align: center;
+  color: var(--custom-red)
 }
 
-.landing, .instruction {
+.landing {
+  align-self: center;
+}
+
+.landing,
+.instruction {
+text-align: center;
+
   font-size: clamp(3dvw, var(--fs-s), 8vw);
   display: flex;
   flex-direction: column;
@@ -49,6 +57,11 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.instruction, .start-button-container {
+  padding: 3dvh; 
+}
+
 
 .game {
   font-size: clamp(3dvw, var(--fs-m), 8vw);
@@ -70,26 +83,26 @@ body {
 }
 
 button {
-  font-size: clamp(2vw, var(--fs-s), 3dvw);
-  margin: 1dvw;
-  padding: 1dvw;
+  font-size: clamp(5dvw, var(--fs-s), 6dvw);
+  margin: 1.5dvw;
+  padding: 1.5dvw;
   border-radius: 2dvw;
   background-color: var(--custom-light-green);
-  min-width: 5dvw;
+  width: clamp(0, 5dvw, 10dvw);
+  height: clamp(0, 5dvw, 10dvw);
   color: var(--custom-white);
-  font-size: var(--fs-xs);
+  
 }
 
 button:hover {
   transform: translateY(-5px) scale(1.1)
-
 }
 
 button:active {
   transform: scale(0.9)
 }
 
-#rock {
+/* #rock {
   background-color: var(--custom-dark-grey);
 }
 
@@ -99,16 +112,19 @@ button:active {
 
 #scissors {
   background-color: var(--custom-light-blue);
-}
+} */
 
-.scores, .round-winner, .choice-container {
+.scores,
+.round-winner,
+.choice-container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 1dvw;
 }
 
-.player-container, .com-container {
+.player-container,
+.com-container {
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
@@ -122,9 +138,16 @@ button:active {
 }
 
 @keyframes flash {
-  0%, 100% {opacity: 1;}
-  50% {opacity: .3}
-} 
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .3
+  }
+}
 
 .flash {
   animation: flash 1s ease-in-out
