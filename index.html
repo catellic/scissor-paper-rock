@@ -1,47 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RPS</title>
-    <link rel="stylesheet" href="./style.css" />
-    <script type="module" src="script.js" defer></script>
-    <script type="module" src="domSelectors.js"></script>
-    <script type="module" src="listeners.js"></script>
-  </head>
-  <body>
-    <div class="title">Rock Paper Scissors</div>
-    <div class="landing">
-      <div class="instruction">
-        Rock beats Scissors.<br />
-        Paper beats Rock.<br />
-        Scissors beats Paper.
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RPS</title>
+  <link rel="stylesheet" href="./style.css" />
+  <script type="module" src="script.js" defer></script>
+  <script type="module" src="domSelectors.js"></script>
+  <script type="module" src="listeners.js"></script>
+</head>
+
+<body>
+  <div class="title"><h1>Rock Paper Scissors</h1></div>
+  <div class="landing">
+    <div class="instruction">
+      Rock beats Scissors.<br />
+      Paper beats Rock.<br />
+      Scissors beats Paper.
+    </div>
+    <div class="start-button-container">
+      <button class="btn start-button">Start game!</button>
+    </div>
+  </div>
+  <div class="game hidden">
+    <div class="scores">
+      <div class="player-container">
+        <div>You</div>
+        <div class="player-score">0</div>
       </div>
-      <div class="start-button-container">
-        <button class="btn start-button">Start game!</button>
+      <div class="com-container">
+        <div>Com</div>
+        <div class="computer-score">0</div>
       </div>
     </div>
-    <div class="game hidden">
-      <div class="scores">
-        <div class="player-container">
-          <div>You</div>
-          <div class="player-score"></div>
-        </div>
-        <div class="com-container">
-          <div>Com</div>
-          <div class="computer-score"></div>
-        </div>
-      </div>
-      <div class="choice-container">
-        <div><button id="rock" class="btn choice">Rock</button></div>
-        <div><button id="paper" class="btn choice">Paper</button></div>
-        <div><button id="scissors" class="btn choice">Scissors</button></div>
-      </div>
+    <div class="round-winner"></div>
+    <div class="choice-container">
+      <div><button id="rock" class="btn choice">Rock</button></div>
+      <div><button id="paper" class="btn choice">Paper</button></div>
+      <div><button id="scissors" class="btn choice">Scissors</button></div>
     </div>
-    <div class="end hidden">
-      <div class="end-title">And the winner is ...</div>
-      <div class="winner"></div>
-      <button class="btn play-again">Play Again!</button>
-    </div>
-  </body>
+  </div>
+  <div class="end hidden">
+    <div class="winner"></div>
+    <div><button class="btn play-again">Play Again!</button></div>
+  </div>
+</body>
+
 </html>

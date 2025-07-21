@@ -17,5 +17,6 @@ export const sel = {
   choiceButtonSel: () => getEl(`.choice`),
   choiceButtonsSel: () => getElArray(`.choice`),
   winnerSel: () => getEl(`.winner`),
+  roundSel: () => getEl(`.round-winner`),
   playAgainSel: () => getEl(`.play-again`),
 };

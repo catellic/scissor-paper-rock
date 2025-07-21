@@ -1,5 +1,17 @@
 import { sel, getEl, getElArray } from './domSelectors.js';
 
+
+// -----------start-----------
+// UTILS
+
+function capitalize(string) {
+  return String(string[0].toUpperCase() + String(string).slice(1))
+}
+
+// UTILS
+// -----------end-----------
+
+
 // -----------start-----------
 // VARIABLES FOR GAME LOGIC
 
@@ -42,13 +54,14 @@ function updateScores(winner) {
     computerScore++;
     sel.computerSel().textContent = computerScore;
   }
+
 }
 
 function checkEndGame() {
   if (playerScore === 5 || computerScore === 5) {
     sel.gameSel().classList.add("hidden");
     sel.endSel().classList.remove("hidden");
-    sel.winnerSel().textContent = roundWinner;
+    sel.winnerSel().textContent = capitalize(roundWinner) + " wins";
   } else {
     computerChoice = getComputerChoice();
   }
@@ -67,20 +80,22 @@ sel.startButtonSel().addEventListener("click", () => {
   // Reset punteggi anche nel DOM
   playerScore = 0;
   computerScore = 0;
-  sel.playerSel().textContent = playerScore;
-  sel.computerSel().textContent = computerScore;
-
+  // sel.playerSel().textContent = playerScore;
+  // sel.computerSel().textContent = computerScore;
   computerChoice = getComputerChoice();
 });
 
 sel.choiceButtonsSel().forEach((btn) => {
   btn.addEventListener("click", (e) => {
     const player = e.target.id;
-    const winner = checkWinner(player, computerChoice);
-    roundWinner = winner.toUpperCase();
 
+    const winner = checkWinner(player, computerChoice);
+    roundWinner = capitalize(winner);
+
+    sel.roundSel().textContent = roundWinner;
     updateScores(winner);
     checkEndGame();
+
   });
 });
 

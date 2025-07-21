@@ -1,112 +1,88 @@
-html,
-body {
-  box-sizing: content-box;
-  min-width: 100vh;
-  min-height: 100vh;
+:root {
+  font-size: 2rem;
+  --fs-s: 1.5rem;
+  --fs-m: 2rem;
+  --fs-l: 2.5rem;
+  --fs-xl: 3rem;
+}
+
+* {
   padding: 0;
   margin: 0;
-  background-color: black;
-  color: white;
+  box-sizing: border-box;
 }
 
-.title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 10vh;
-  font-size: 48px;
-  font-weight: 900;
-  color: burlywood;
-}
 
-.landing {
+body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  
+  width: 100dvw;
+  height: 100dvh;
+  justify-content: flex-start;
   align-items: center;
+  padding: 1dvh;
+  margin: 1dvh;
 }
 
-.instruction {
+.title>h1 {
+  font-size: clamp(5dvw, var(--fs-xl), 10dvw);
+  margin: 2dvh;
+  
+}
+
+.landing, .instruction {
+  font-size: clamp(3dvw, var(--fs-m), 8vw);
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
+  /* gap: 10dvw; */
   justify-content: center;
   align-items: center;
-  text-align: center;
-  font-size: 36px;
-}
-
-.start-button-container {
-  padding: 10px;
-}
-
-.btn {
-  text-align: center;
-  padding: 10px;
-  background-color: black;
-  color: burlywood;
-  border: 2px solid burlywood;
-  border-radius: 5px;
-  font-size: 16px;
-  min-width: 60px;
-}
-
-.btn:hover {
-  background-color: grey;
-  color: burlywood;
-  font-size: 22px;
-  padding: 15px;
 }
 
 .game {
+  font-size: clamp(3dvw, var(--fs-m), 8vw);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-}
-
-.game .scores {
-  display: flex;
+  gap: 10dvw;
   justify-content: center;
   align-items: center;
 }
 
-.player-container > *,
-.com-container > * {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
-  color: white;
-  text-align: center;
-  font-size: 36px;
-}
-
-.choice-container {
-  display: flex;
-  flex: 1 0 auto;
-  justify-content: center;
-  align-items: center;
-  
-}
 
 .end {
+  font-size: clamp(3dvw, var(--fs-m), 8vw);
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  gap: 10dvw;
+  justify-content: center;
   align-items: center;
-  
 }
 
-.end-title {
-  background-color: black;
-  color: burlywood;
-  font-size: 24px;
+button {
+  font-size: clamp(2vw, var(--fs-s), 3dvw);
+  margin: 1dvw;
+  padding: 1dvw;
+  border-radius: 2dvw;
+
+  min-width: 5dvw;
 }
 
-.winner {
-  color: white;
-  font-size: 72px;
+.scores, .round-winner, .choice-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1dvw;
+}
+
+.player-container, .com-container {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  margin: 1dvw;
+  padding: 1dvw;
 }
 
 .hidden {
