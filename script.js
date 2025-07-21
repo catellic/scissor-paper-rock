@@ -1,9 +1,20 @@
 import { sel, getEl, getElArray } from './domSelectors.js';
 
+// -----------start-----------
+// VARIABLES FOR GAME LOGIC
+
 let computerScore = 0,
   playerScore = 0,
   computerChoice,
   roundWinner;
+
+
+// VARIABLES FOR GAME LOGIC
+// -----------end-----------
+
+
+// -----------start-----------
+// GAME LOGIC FUNC
 
 function getComputerChoice() {
   const r = Math.random();
@@ -12,14 +23,13 @@ function getComputerChoice() {
   return "scissors";
 }
 
-function checkWinner(player, computer) {
-  if (player === computer) return "tie";
+function checkWinner(p1, p2) {
+  if (p1 === p2) return "tie";
   if (
-    (player === "rock" && computer === "scissors") ||
-    (player === "paper" && computer === "rock") ||
-    (player === "scissors" && computer === "paper")
-  )
-    return "player";
+    (p1 === "rock" && p2 === "scissors") ||
+    (p1 === "paper" && p2 === "rock") ||
+    (p1 === "scissors" && p2 === "paper")
+  ) return "player";
   return "computer";
 }
 
@@ -27,7 +37,7 @@ function updateScores(winner) {
   if (winner === "player") {
     playerScore++;
     sel.playerSel().textContent = playerScore;
-    
+
   } else if (winner === "computer") {
     computerScore++;
     sel.computerSel().textContent = computerScore;
@@ -43,6 +53,12 @@ function checkEndGame() {
     computerChoice = getComputerChoice();
   }
 }
+// GAME LOGIC FUNC
+// -----------end-----------
+
+
+// -----------start-----------
+// EVENT LISTENERS SECTION
 
 sel.startButtonSel().addEventListener("click", () => {
   sel.landingSel().classList.add("hidden");
@@ -77,3 +93,7 @@ sel.playAgainSel().addEventListener("click", () => {
   sel.endSel().classList.add("hidden");
   sel.landingSel().classList.remove("hidden");
 });
+
+
+// EVENT LISTENERS SECTION
+// -----------end-----------
