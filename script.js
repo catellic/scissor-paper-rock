@@ -19,10 +19,10 @@ function restoreGameValues() {
   sel.titleSel().classList.remove("hidden");
 }
 
-function flashText(selector,) {
-  selector.classList.remove(`flash`, `green`)
+function flashText(selector, color) {
+  selector.classList.remove(`flash`, color)
   requestAnimationFrame(() => {
-    selector.classList.add(`flash`, `green`)
+    selector.classList.add(`flash`, color)
   })
 }
 
@@ -67,15 +67,15 @@ function updateScores(winner) {
   if (winner === "player") {
     playerScore++;
     sel.playerSel().textContent = playerScore;
-    flashText(sel.playerSel())
+    flashText(sel.playerSel(), `green`)
   } else if (winner === "computer") {
     computerScore++;
     sel.computerSel().textContent = computerScore;
-    flashText(sel.computerSel())
+    flashText(sel.computerSel(), `green`)
   }
 
   sel.roundSel().textContent = (winner === `tie`) ? "Tie" : capitalize(winner) + " wins";
-  flashText(sel.roundSel())
+  flashText(sel.roundSel(), `green`)
 }
 
 function checkEndGame(winner) {
@@ -84,7 +84,8 @@ function checkEndGame(winner) {
     sel.gameSel().classList.add("hidden");
     sel.endSel().classList.remove("hidden");
     sel.winnerSel().textContent = capitalize(winner) + " wins";
-    flashText(sel.winnerSel())
+    flashText(sel.winnerSel(), `red`)
+    
   } else {
     computerChoice = getComputerChoice();
   }

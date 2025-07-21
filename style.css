@@ -16,7 +16,9 @@
   --custom-light-green: #10B981;
 }
 
-* {
+*,
+*::after,
+*::before {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -25,19 +27,20 @@
 body {
   display: flex;
   flex-direction: column;
-
+  /* width: 100vw; */
   width: 100dvw;
+  /* height: 100vh; */
   height: 100dvh;
   justify-content: center;
   align-items: center;
-  padding: 2dvh;
+  padding: 0;
   margin: 0;
   overflow: hidden;
 }
 
 .title>h1 {
-  font-size: clamp(5dvw, var(--fs-xl), 10dvw);
-  padding: 2dvh;
+  font-size: clamp(1rem, 5vw, 4rem);
+  padding: clamp(0.1rem, 0.5rem, 1rem);
   text-align: center;
   color: var(--custom-red)
 }
@@ -48,18 +51,18 @@ body {
 
 .landing,
 .instruction {
-text-align: center;
+  text-align: center;
 
-  font-size: clamp(3dvw, var(--fs-s), 8vw);
+  font-size: clamp(var(--fs-xs), 2dvw, var(--fs-s));
   display: flex;
   flex-direction: column;
-  /* gap: 10dvw; */
   justify-content: center;
   align-items: center;
 }
 
-.instruction, .start-button-container {
-  padding: 3dvh; 
+.instruction,
+.start-button-container {
+  padding: clamp(0.1rem, .25rem, 0.5rem);
 }
 
 
@@ -67,15 +70,15 @@ text-align: center;
   font-size: clamp(3dvw, var(--fs-m), 8vw);
   display: flex;
   flex-direction: column;
-  gap: 10dvw;
   justify-content: center;
   align-items: center;
+  /* max-height: 80dvh; */
 }
 
 
 
 .end {
-  font-size: clamp(3dvw, var(--fs-m), 8vw);
+  /* font-size: clamp(var(--fs-m), var(--fs-l), var(--fs-xl)); */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -83,15 +86,13 @@ text-align: center;
 }
 
 button {
-  font-size: clamp(5dvw, var(--fs-s), 6dvw);
-  margin: 1.5dvw;
-  padding: 1.5dvw;
-  border-radius: 2dvw;
+  font-size: clamp(var(--fs-xs), var(--fs-xs), var(--fs-s));
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 20px;
   background-color: var(--custom-light-green);
-  width: clamp(0, 5dvw, 10dvw);
-  height: clamp(0, 5dvw, 10dvw);
   color: var(--custom-white);
-  
+
 }
 
 button:hover {
@@ -120,7 +121,7 @@ button:active {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1dvw;
+  /* max-width: 100dvw; */
 }
 
 .player-container,
@@ -129,12 +130,18 @@ button:active {
   flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
-  margin: 1dvw;
   padding: 1dvw;
+  max-width: 100%;
 }
 
 .hidden {
   display: none;
+}
+
+.winner {
+  text-align: center;
+  font-size: clamp(var(--fs-m), var(--fs-l), var(--fs-xl));
+  padding: 5dvh;
 }
 
 @keyframes flash {
@@ -155,4 +162,19 @@ button:active {
 
 .green {
   color: var(--custom-light-green);
+}
+
+.red {
+  color: var(--custom-red)
+}
+
+
+
+@media screen and (max-width: 600px) {
+  body {
+    display: flex;
+    flex-direction: column;
+
+  }
+
 }
