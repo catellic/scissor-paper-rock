@@ -8,6 +8,23 @@ function capitalize(string) {
   return String(string[0].toUpperCase() + String(string).slice(1))
 }
 
+function restoreGameValues() {
+  playerScore = 0;
+  computerScore = 0;
+  sel.playerSel().textContent = playerScore;
+  sel.computerSel().textContent = computerScore;
+  sel.roundSel().textContent = ""
+  sel.endSel().classList.add("hidden");
+  sel.landingSel().classList.remove("hidden");
+}
+
+function flashText(selector,) {
+  selector.classList.remove(`flash`, `green`)
+  requestAnimationFrame(() => {
+    selector.classList.add(`flash`, `green`)
+  })
+}
+
 // UTILS
 // -----------end-----------
 
@@ -49,19 +66,23 @@ function updateScores(winner) {
   if (winner === "player") {
     playerScore++;
     sel.playerSel().textContent = playerScore;
-
+    flashText(sel.playerSel())
   } else if (winner === "computer") {
     computerScore++;
     sel.computerSel().textContent = computerScore;
+    flashText(sel.computerSel())
   }
 
+  sel.roundSel().textContent = (winner === `tie`) ? "Tie" : capitalize(winner) + " wins";
+  flashText(sel.roundSel())
 }
 
-function checkEndGame() {
+function checkEndGame(winner) {
   if (playerScore === 5 || computerScore === 5) {
     sel.gameSel().classList.add("hidden");
     sel.endSel().classList.remove("hidden");
-    sel.winnerSel().textContent = capitalize(roundWinner) + " wins";
+    sel.winnerSel().textContent = capitalize(winner) + " wins";
+    flashText(sel.winnerSel())
   } else {
     computerChoice = getComputerChoice();
   }
@@ -92,21 +113,15 @@ sel.choiceButtonsSel().forEach((btn) => {
     const winner = checkWinner(player, computerChoice);
     roundWinner = capitalize(winner);
 
-    sel.roundSel().textContent = roundWinner;
     updateScores(winner);
-    checkEndGame();
+    checkEndGame(winner);
 
   });
 });
 
+// initialize game by restoring default values
 sel.playAgainSel().addEventListener("click", () => {
-  playerScore = 0;
-  computerScore = 0;
-  sel.playerSel().textContent = playerScore;
-  sel.computerSel().textContent = computerScore;
-
-  sel.endSel().classList.add("hidden");
-  sel.landingSel().classList.remove("hidden");
+  restoreGameValues()
 });
 
 
