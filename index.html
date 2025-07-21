@@ -12,40 +12,49 @@
 </head>
 
 <body>
-  <div class="title"><h1>Scissors Paper Rock</h1></div>
-  <div class="landing">
-    <div class="instruction">
-      Rock beats Scissors.<br />
-      Paper beats Rock.<br />
-      Scissors beats Paper. <br>
-      <br>
-      Score 5 to win.
-    </div>
-    <div class="start-button-container">
-      <button class="btn start-button">Play</button>
-    </div>
+  <div class="header">
+    <h1>Scissors Paper Rock</h1>
   </div>
-  <div class="game hidden">
-    <div class="scores">
-      <div class="player-container">
-        <div>You</div>
-        <div class="player-score">0</div>
+  <div class="game">
+
+    <div class="landing">
+      <div class="instruction">
+        Rock beats Scissors.<br />
+        Paper beats Rock.<br />
+        Scissors beats Paper. <br>
+        <br>
+        Score 5 to win.
       </div>
-      <div class="com-container">
-        <div>Com</div>
-        <div class="computer-score">0</div>
+      <div class="start-button-container">
+        <button class="btn start-button">Play</button>
       </div>
     </div>
-    <div class="round-winner"></div>
-    <div class="choice-container">
-      <div><button id="scissors" class="btn choice">Scissors</button></div>
-      <div><button id="paper" class="btn choice">Paper</button></div>
-      <div><button id="rock" class="btn choice">Rock</button></div>
+    <div class="game hidden">
+      <div class="scores">
+        <div class="player-container">
+          <div>You</div>
+          <div class="player-score">0</div>
+        </div>
+        <div class="com-container">
+          <div>Com</div>
+          <div class="computer-score">0</div>
+        </div>
+      </div>
+      <div class="round-winner"></div>
+      <div class="choice-container">
+        <div><button id="scissors" class="btn choice">Scissors</button></div>
+        <div><button id="paper" class="btn choice">Paper</button></div>
+        <div><button id="rock" class="btn choice">Rock</button></div>
+      </div>
+    </div>
+    <div class="end hidden">
+      <div class="winner"></div>
+      <div><button class="btn play-again">Play Again!</button></div>
     </div>
   </div>
-  <div class="end hidden">
-    <div class="winner"></div>
-    <div><button class="btn play-again">Play Again!</button></div>
+  <div class="footer">
+    <div>Github:</div>
+    <a href="https://github.com/catellic/scissor-paper-rock" target="_blank"><div>Scissors Paper Rock</div></a>
   </div>
 </body>
 

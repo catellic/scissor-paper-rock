@@ -7,7 +7,7 @@ export function getElArray(el) {
 }
 
 export const sel = {
-  titleSel: () => getEl(`.title`),
+  headerSel: () => getEl(`.header`),
   startButtonSel: () => getEl(`.start-button`),
   landingSel: () => getEl(`.landing`),
   instructionSel: () => getEl(`.instruction`),

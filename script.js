@@ -16,7 +16,7 @@ function restoreGameValues() {
   sel.roundSel().textContent = ""
   sel.endSel().classList.add("hidden");
   sel.landingSel().classList.remove("hidden");
-  sel.titleSel().classList.remove("hidden");
+  sel.headerSel().classList.remove("hidden");
 }
 
 function flashText(selector, color) {
@@ -85,7 +85,7 @@ function checkEndGame(winner) {
     sel.endSel().classList.remove("hidden");
     sel.winnerSel().textContent = capitalize(winner) + " wins";
     flashText(sel.winnerSel(), `red`)
-    
+
   } else {
     computerChoice = getComputerChoice();
   }
@@ -99,7 +99,7 @@ function checkEndGame(winner) {
 
 sel.startButtonSel().addEventListener("click", () => {
 
-  sel.titleSel().classList.add("hidden");
+  // sel.headerSel().classList.add("hidden");
   sel.landingSel().classList.add("hidden");
   sel.gameSel().classList.remove("hidden");
   // Reset punteggi anche nel DOM
