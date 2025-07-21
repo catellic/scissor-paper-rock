@@ -1,8 +1,5 @@
 :root {
-  font-size: 2rem;
-  color: var(--custom-white);
-  background-color: var(--custom-white);
-  -webkit-text-stroke: 0.15dvw var(--custom-text);
+  font-size: 16px;
   --fs-xs: 1rem;
   --fs-s: 1.5rem;
   --fs-m: 2rem;
@@ -25,21 +22,26 @@
 }
 
 body {
+  font-size: clamp(1rem, 2rem, 3rem);
+  color: var(--custom-white);
+  background-color: var(--custom-white);
+  -webkit-text-stroke: 0.15dvw var(--custom-text);
+  
   display: flex;
   flex-direction: column;
-  /* width: 100vw; */
-  width: 100dvw;
-  /* height: 100vh; */
-  height: 100dvh;
+  
+  min-height: 100dvh;
+  width: 100%;
+  max-width: 100dvw;
+
   justify-content: center;
   align-items: center;
   padding: 0;
   margin: 0;
-  overflow: hidden;
 }
 
 .title>h1 {
-  font-size: clamp(1rem, 5vw, 4rem);
+  font-size: clamp(1rem, 10vw, 4rem);
   padding: clamp(0.1rem, 0.5rem, 1rem);
   text-align: center;
   color: var(--custom-red)
@@ -52,8 +54,8 @@ body {
 .landing,
 .instruction {
   text-align: center;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
 
-  font-size: clamp(var(--fs-xs), 2dvw, var(--fs-s));
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -63,16 +65,17 @@ body {
 .instruction,
 .start-button-container {
   padding: clamp(0.1rem, .25rem, 0.5rem);
+  font-size: clamp(1rem, 2rem, 4rem);
 }
 
 
 .game {
-  font-size: clamp(3dvw, var(--fs-m), 8vw);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* max-height: 80dvh; */
+  
 }
 
 
@@ -86,10 +89,10 @@ body {
 }
 
 button {
-  font-size: clamp(var(--fs-xs), var(--fs-xs), var(--fs-s));
+  font-size: clamp(1rem, 2rem, 3rem);
   margin: 0.5rem;
   padding: 0.5rem;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: var(--custom-light-green);
   color: var(--custom-white);
 
@@ -121,7 +124,9 @@ button:active {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* max-width: 100dvw; */
+  width: 100%;
+  max-width: 100dvw;
+  
 }
 
 .player-container,
@@ -165,7 +170,7 @@ button:active {
 }
 
 .red {
-  color: var(--custom-red)
+  color: var(--custom-red);
 }
 
 
@@ -174,7 +179,6 @@ button:active {
   body {
     display: flex;
     flex-direction: column;
-
   }
 
 }
