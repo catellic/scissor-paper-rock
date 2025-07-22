@@ -65,6 +65,10 @@ a>div:hover {
   transform: scale(1.2);
 }
 
+a>div:active {
+  transform: scale(0.9);
+}
+
 .landing {
   align-self: center;
 }
@@ -86,17 +90,13 @@ a>div:hover {
   font-size: clamp(1rem, 2rem, 4rem);
 }
 
-
 .game {
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 }
-
-
 
 .end {
   /* font-size: clamp(var(--fs-m), var(--fs-l), var(--fs-xl)); */
