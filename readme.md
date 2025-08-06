@@ -2,7 +2,6 @@
 
 Scissor Paper Rock è una web app interattiva che permette di giocare a "Carta, Forbice, Sasso" contro il computer. Il gioco è stato realizzato come esercizio di JavaScript, HTML e CSS.
 
-[👉 Prova il gioco online!](){:target="_blank"}
 <a href="https://catellic.github.io/scissor-paper-rock/" target="_blank" rel="noopener">Gioca ora su Scissors Paper Rock</a> <!-- Si apre automaticamente in una nuova scheda -->
 
 ## Funzionalità
